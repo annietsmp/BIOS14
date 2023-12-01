@@ -176,6 +176,14 @@ ggplot(df, aes(x = Patry, y = means_p, fill = "Patry")) +
         plot.title = element_text(hjust = 0.5)) +
   coord_cartesian(ylim = c(0, 5.2))
 
+#ancova with everything to see if i missing any interactions
 
+ex1 = lm(Melanized_area ~ Patry + Sex + Wing_area , data=dat)
+ex2 = lm(Melanized_area ~ Patry * Wing_area + Sex  , data=dat)
+
+#model selection
+model.set = list(ex1, ex2)
+model.names = c("1", "2")
+aictab(model.set, modnames = model.names)
 
 
